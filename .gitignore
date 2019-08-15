@@ -1,2 +1,7 @@
 /build
 /.doctrees
+conf.mk
+/src/*.inv
+/src/*.inv.txt
+/src/apidoc
+/src/license.rst

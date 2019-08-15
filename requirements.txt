@@ -1,3 +1,5 @@
+MacFSEvents
+requests
 Sphinx
 sphinx-autobuild
 sphinx-autodoc-typehints

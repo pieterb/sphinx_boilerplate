@@ -1,43 +1,38 @@
-.PHONY: apidoc server clean invclean gh-pages
+.PHONY: default build server clean invclean
 
-RM            := rm -rf
-SPHINXOPTS    := -d .doctrees
-SPHINXBUILD   := sphinx-build
-SPHINXAPIDOC  := sphinx-apidoc
-AUTOBUILD     := sphinx-autobuild
-SOURCEDIR     := ..
-BUILDDIR      := build
-GITORIGIN     = "$$(git remote show -n origin | grep 'Fetch URL:' | grep -o 'git@.*')"
-GITBRANCH     := $(shell git branch | grep '^\* ' | sed 's/^\* //')
+include conf.mk
 
-
-apidoc: clean
-	$(SPHINXAPIDOC) --force --module-first --no-toc --private -o "./apidoc" "../" sphinx
-
-
-build:
-	$(SPHINXBUILD) -b html . "$(BUILDDIR)" $(SPHINXOPTS)
+RM              := rm -rf
+SPHINXBUILD     := sphinx-build
+SPHINXAUTOBUILD := sphinx-autobuild
+SPHINXAPIDOC    := sphinx-apidoc
+SPHINXOPTS      := -j auto -d .doctrees \
+                   -D project="$(PROJECT_NAME)" \
+                   -D copyright="$(PROJECT_COPYRIGHT)" \
+                   -D author="$(PROJECT_AUTHOR)" \
+                   -D version="$(PROJECT_VERSION)" \
+                   -D release="$(PROJECT_RELEASE)"
 
 
-server:
-	@$(AUTOBUILD) . "$(BUILDDIR)" $(SPHINXOPTS) --watch "$(SOURCEDIR)" --ignore build
+default: build
+
+
+$(SOURCEDIR)/apidoc:
+	SPHINX_APIDOC_OPTIONS='members' $(SPHINXAPIDOC) --force --module-first --no-toc --private -o "$(SOURCEDIR)/apidoc" $(CODEDIR)
+	mv "$(SOURCEDIR)"/apidoc/pseudomat.rst{,.bak}
+
+
+build: $(SOURCEDIR)/apidoc
+	$(SPHINXBUILD) -b html $(SPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)"
+
+
+server: $(SOURCEDIR)/apidoc
+	@$(AUTOBUILD) "$(BUILDDIR)" $(SPHINXOPTS) --watch $(CODEDIR) --watch "$(SOURCEDIR)" "$(SOURCEDIR)"
 
 
 clean:
-	@$(RM) $(BUILDDIR) .doctrees apidoc
+	@$(RM) $(BUILDDIR) .doctrees "$(SOURCEDIR)/apidoc"
 
 
 invclean:
 	@$(RM) *.inv *.inv.txt
-
-
-gh-pages: build
-	[ -d gh-pages ] || git clone --branch gh-pages --depth 1 $(GITORIGIN) gh-pages
-	cd gh-pages && { [ "`echo *`" = '*' ] || git rm -rf *; }
-	cd build && cp -a * ../gh-pages
-	cd gh-pages && \
-	  git add * && \
-	  git commit -m "Update from branch $(GITBRANCH)" && \
-	  git push
-	cd ..
-	rm -rf gh-pages
