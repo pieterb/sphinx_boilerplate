@@ -95,10 +95,11 @@ default_role = 'py:obj'
 # -- Options for extensions -----------------------------------------------
 
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3.7/', 'python.inv'),
-    'sphinx': ('https://www.sphinx-doc.org/en/stable/', 'sphinx.inv'),
     'aiohttp': ('https://aiohttp.readthedocs.io/en/stable/', 'aiohttp.inv'),
-    'sa': ('https://docs.sqlalchemy.org/en/13/', 'sa.inv')
+    'python': ('https://docs.python.org/3.7/', 'python.inv'),
+    'requests': ('https://2.python-requests.org/en/master/', 'requests.inv'),
+    'sa': ('https://docs.sqlalchemy.org/en/13/', 'sa.inv'),
+    'sphinx': ('https://www.sphinx-doc.org/en/stable/', 'sphinx.inv'),
 }
 
 # The following code downloads *.inv files from the intersphinx docsets, and

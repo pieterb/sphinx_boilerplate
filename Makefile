@@ -6,6 +6,7 @@ RM              := rm -rf
 SPHINXBUILD     := sphinx-build
 SPHINXAUTOBUILD := sphinx-autobuild
 SPHINXAPIDOC    := sphinx-apidoc
+SOURCEDIR       := src
 SPHINXOPTS      := -j auto -d .doctrees \
                    -D project="$(PROJECT_NAME)" \
                    -D copyright="$(PROJECT_COPYRIGHT)" \
@@ -13,16 +14,17 @@ SPHINXOPTS      := -j auto -d .doctrees \
                    -D version="$(PROJECT_VERSION)" \
                    -D release="$(PROJECT_RELEASE)"
 
+SOURCEFILES = $(shell find $(CODEDIR) -name \*.py)
 
 default: build
 
 
-$(SOURCEDIR)/apidoc:
+$(SOURCEDIR)/apidoc: $(SOURCEFILES)
 	SPHINX_APIDOC_OPTIONS='members' $(SPHINXAPIDOC) --force --module-first --no-toc --private -o "$(SOURCEDIR)/apidoc" $(CODEDIR)
-	mv "$(SOURCEDIR)"/apidoc/pseudomat.rst{,.bak}
+	mv "$(SOURCEDIR)"/apidoc/pseudomat.rst{,~}
 
 
-build: $(SOURCEDIR)/apidoc
+build: $(SOURCEDIR)/apidoc $(SOURCEDIR)/*.rst ../README.rst
 	$(SPHINXBUILD) -b html $(SPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)"
 
 
