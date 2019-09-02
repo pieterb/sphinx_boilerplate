@@ -149,13 +149,14 @@ See :doc:`sphinx:usage/restructuredtext/directives` for documentation of many ha
 
 .. code-block:: rst
 
+    .. deprecated:: version
+    .. hlist::
     .. note::
-    .. warning::
+    .. seealso::
+    .. todo::
     .. versionadded:: version
     .. versionchanged:: version
-    .. deprecated:: version
-    .. seealso::
-    .. hlist::
+    .. warning::
 
 
 Google-style docstrings

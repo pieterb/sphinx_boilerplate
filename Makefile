@@ -21,7 +21,7 @@ default: build
 
 $(SOURCEDIR)/apidoc: $(SOURCEFILES)
 	SPHINX_APIDOC_OPTIONS='members' $(SPHINXAPIDOC) --force --module-first --no-toc --private -o "$(SOURCEDIR)/apidoc" $(CODEDIR)
-	mv "$(SOURCEDIR)"/apidoc/pseudomat.rst{,~}
+	mv "$(SOURCEDIR)/apidoc/pseudomat.rst"{,~}
 
 
 build: $(SOURCEDIR)/apidoc $(SOURCEDIR)/*.rst ../README.rst
@@ -29,12 +29,12 @@ build: $(SOURCEDIR)/apidoc $(SOURCEDIR)/*.rst ../README.rst
 
 
 server: $(SOURCEDIR)/apidoc
-	@$(AUTOBUILD) "$(BUILDDIR)" $(SPHINXOPTS) --watch $(CODEDIR) --watch "$(SOURCEDIR)" "$(SOURCEDIR)"
+	$(SPHINXAUTOBUILD) $(SPHINXOPTS) --watch $(CODEDIR) --watch "$(SOURCEDIR)" "$(SOURCEDIR)" "$(BUILDDIR)"
 
 
 clean:
-	@$(RM) $(BUILDDIR) .doctrees "$(SOURCEDIR)/apidoc"
+	$(RM) $(BUILDDIR) .doctrees "$(SOURCEDIR)/apidoc"
 
 
 invclean:
-	@$(RM) *.inv *.inv.txt
+	$(RM) *.inv *.inv.txt
