@@ -12,13 +12,11 @@
 import os
 import sphinx_rtd_theme
 import requests
-# import sys
-
-from pseudomat.common import VERSION as _VERSION
 
 # # If extensions (or modules to document with autodoc) are in another directory,
 # # add these directories to sys.path here. If the directory is relative to the
 # # documentation root, use os.path.abspath to make it absolute, like shown here.
+# import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
 
@@ -30,9 +28,9 @@ from pseudomat.common import VERSION as _VERSION
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
-    'sphinx.ext.extlinks',
+    # 'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.napoleon',
+    # 'sphinx.ext.napoleon',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
     'sphinx_autodoc_typehints',
@@ -96,10 +94,13 @@ default_role = 'py:obj'
 
 intersphinx_mapping = {
     'aiohttp': ('https://aiohttp.readthedocs.io/en/stable/', 'aiohttp.inv'),
+    'click': ('https://click.palletsprojects.com/en/7.x/', 'click.inv'),
+    'flask': ('https://flask.palletsprojects.com/en/1.1.x/', 'flask.inv'),
     'python': ('https://docs.python.org/3.7/', 'python.inv'),
     'requests': ('https://2.python-requests.org/en/master/', 'requests.inv'),
     'sa': ('https://docs.sqlalchemy.org/en/13/', 'sa.inv'),
     'sphinx': ('https://www.sphinx-doc.org/en/stable/', 'sphinx.inv'),
+    'werkzeug': ('https://werkzeug.palletsprojects.com/en/0.15.x/', 'werkzeug.inv'),
 }
 
 # The following code downloads *.inv files from the intersphinx docsets, and

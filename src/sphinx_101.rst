@@ -175,31 +175,25 @@ Example::
 
 The following section headers are supported:
 
-*   **Args** (alias of **Parameters**)
-*   **Arguments** (alias of **Parameters**)
 *   **Attributes**
 *   **Example**
 *   **Examples**
-*   **Keyword Args** (alias of **Keyword Arguments**)
-*   **Keyword Arguments**
+*   **Keyword Arguments** (alias: **Keyword Args**)
 *   **Methods**
 *   **Note**
 *   **Notes**
 *   **Other Parameters**
-*   **Parameters**
-*   **Return** (alias of **Returns**)
-*   **Returns**
+*   **Parameters** (aliases: **Args**, **Arguments**)
+*   **Returns** (alias: **Return**)
 *   **Raises**
 *   **References**
 *   **See Also**
 *   **Todo** (doesn't work together with `sphinx.ext.todo
     <http://www.sphinx-doc.org/en/stable/ext/todo.html>`_: items won't show up
     in the ``.. todolist::``)
-*   **Warning**
-*   **Warnings** (alias of **Warning**)
+*   **Warning** (alias: **Warnings**)
 *   **Warns**
-*   **Yield** (alias of **Yields**)
-*   **Yields**
+*   **Yields** (alias: **Yield**)
 
 
 Autodoc
@@ -254,11 +248,14 @@ Intersphinx
 Intersphinx is configured with the following mappings::
 
     intersphinx_mapping = {
-        'python': ('https://docs.python.org/3.6/', 'python.inv'),
-        'sphinx': ('http://www.sphinx-doc.org/en/stable/', 'sphinx.inv'),
-        'aiohttp': ('http://aiohttp.readthedocs.io/en/stable/', 'aiohttp.inv'),
-        'aiopg': ('https://aiopg.readthedocs.io/en/stable/', 'aiopg.inv'),
-        'jwt': ('https://pyjwt.readthedocs.io/en/latest/', 'jwt.inv'),
+        'aiohttp': ('https://aiohttp.readthedocs.io/en/stable/', 'aiohttp.inv'),
+        'click': ('https://click.palletsprojects.com/en/7.x/', 'click.inv'),
+        'flask': ('https://flask.palletsprojects.com/en/1.1.x/', 'flask.inv'),
+        'python': ('https://docs.python.org/3.7/', 'python.inv'),
+        'requests': ('https://2.python-requests.org/en/master/', 'requests.inv'),
+        'sa': ('https://docs.sqlalchemy.org/en/13/', 'sa.inv'),
+        'sphinx': ('https://www.sphinx-doc.org/en/stable/', 'sphinx.inv'),
+        'werkzeug': ('https://werkzeug.palletsprojects.com/en/0.15.x/', 'werkzeug.inv'),
     }
 
 For each of these external packages, a full list of available reference targets
