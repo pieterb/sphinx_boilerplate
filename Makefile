@@ -24,7 +24,7 @@ $(SOURCEDIR)/apidoc: $(SOURCEFILES)
 	mv "$(SOURCEDIR)/apidoc/pseudomat.rst"{,~}
 
 
-build: $(SOURCEDIR)/apidoc $(SOURCEDIR)/*.rst ../README.rst
+build: $(SOURCEDIR)/apidoc
 	$(SPHINXBUILD) -b html $(SPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)"
 
 
